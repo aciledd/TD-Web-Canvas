@@ -21,6 +21,7 @@ body::before {
     top: -15%;
     left: -10%;
     width: 500px;
+
     height: 400px;
 
     background: radial-gradient(
@@ -98,11 +99,13 @@ body::after {
 
 .bouton-retour {
     padding: 0.8rem 1.8rem;
+
     background: linear-gradient(135deg, #709176, #CDE77F);
     color: #704E2E;
     text-decoration: none;
     border-radius: 15px;
     font-weight: 600;
+    
     font-size: 1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(112, 78, 46, 0.2);
