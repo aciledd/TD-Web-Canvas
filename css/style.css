@@ -1,0 +1,239 @@
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #E6F8B2; /* Vert pâle jungle */
+    min-height: 100vh;
+    color: #704E2E; /* Marron foncé */
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -15%;
+    left: -10%;
+    width: 500px;
+    height: 400px;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(112, 145, 118, 0.25) 0%,
+        rgba(112, 145, 118, 0.12) 40%,
+        transparent 70%
+    );
+
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -15%;
+    right: -10%;
+    width: 600px;
+
+    height: 500px;
+    background: radial-gradient(
+        ellipse,
+        rgba(205, 231, 127, 0.2) 0%,
+        rgba(205, 231, 127, 0.1) 40%,
+        transparent 70%
+    );
+    filter: blur(60px);
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.jeu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+
+.titre-zone {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    padding: 0 1rem;
+}
+
+.titre-principal {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.titre-mot {
+    display: block;
+}
+
+.titre-mot:first-child {
+    color: #704E2E;
+    text-shadow: 3px 3px 0 rgba(205, 231, 127, 0.4);
+}
+
+.titre-mot.amazonie {
+    color: #709176;
+    text-shadow: 2px 2px 0 rgba(112, 78, 46, 0.2);
+    margin-left: 2rem;
+}
+
+.bouton-retour {
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(135deg, #709176, #CDE77F);
+    color: #704E2E;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(112, 78, 46, 0.2);
+}
+
+.bouton-retour:hover {
+    background: linear-gradient(135deg, #704E2E, #709176);
+    color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(112, 78, 46, 0.3);
+}
+
+
+.zone-canvas {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#canvas {
+    background: linear-gradient(180deg, #FFF8DC 0%, #E6F8B2 100%);
+    border-radius: 20px;
+    border: 4px solid #709176;
+    box-shadow: 
+        0 8px 30px rgba(112, 78, 46, 0.25),
+        inset 0 2px 8px rgba(205, 231, 127, 0.3);
+    cursor: crosshair;
+}
+
+
+.info-panel {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    border: 3px solid #CDE77F;
+    box-shadow: 0 4px 15px rgba(112, 78, 46, 0.15);
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    border-color: #709176;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(112, 78, 46, 0.25);
+}
+
+.info-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.info-item span {
+    font-size: 1rem;
+    color: #704E2E;
+    font-weight: 600;
+}
+
+
+.controls {
+    text-align: center;
+    font-size: 1rem;
+    color: #704E2E;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}
+
+.controls strong {
+    color: #709176;
+    font-weight: 700;
+    padding: 4px 10px;
+    background: rgba(112, 145, 118, 0.2);
+    border-radius: 8px;
+}
+
+
+.footer-credits {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-top: 2px solid #CDE77F;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-credits p {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    color: #704E2E;
+}
+
+.footer-credits a {
+    color: #704E2E;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-credits a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 900px) {
+    .titre-principal {
+        font-size: 2.5rem;
+    }
+    
+    .titre-mot.amazonie {
+        margin-left: 1rem;
+    }
+    
+    #canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .info-panel {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
