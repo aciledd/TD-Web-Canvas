@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banana Hunter - Amazonie</title>
+    <title>Chasse Amazonienne</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -15,40 +16,51 @@
     
     <main class="jeu-container">
         
-      
         <div class="titre-zone">
 
             <h1 class="titre-principal">
-                <span class="titre-mot">Banana</span>
-                <span class="titre-mot amazonie">Hunter</span>
+                <span class="titre-mot">Chasse</span>
+                <span class="titre-mot amazonie">Amazonienne</span>
             </h1>
-           
+
             <a href="../../index.html" class="bouton-retour">Retour</a>
         </div>
 
-
+ 
         <div class="zone-canvas">
             <canvas id="canvas" width="800" height="600"></canvas>
+            
+
+            <div class="panier-container">
+                <img id="panier-img" src="./assets/panier0.png" alt="Panier">
+            </div>
+
         </div>
 
-        
+
         <div class="info-panel">
 
+            
             <div class="info-item">
                 <img src="./assets/banana.png" alt="banane" class="info-icon">
-                <span>Banane jaune : 50 pts</span>
+                <span>Banane jaune<strong>50 pts</strong></span>
             </div>
 
             <div class="info-item">
                 <img src="./assets/green-banana.png" alt="banane verte" class="info-icon">
-                <span>Banane verte : 100 pts</span>
+                <span>Banane verte<strong>100 pts</strong></span>
             </div>
 
             <div class="info-item">
-                <img src="./assets/ape.png" alt="singe" class="info-icon">
-                <span>Singe : 500 pts</span>
+                <img src="./assets/two-bananas.png" alt="régime" class="info-icon">
+                <span>Régime<strong>200 pts</strong></span>
             </div>
-            
+           
+            <div class="info-item">
+                <img src="./assets/ananas.png" alt="ananas" class="info-icon">
+                <span>Ananas<strong>500 pts</strong></span>
+            </div>
+
         </div>
 
         <p class="controls">

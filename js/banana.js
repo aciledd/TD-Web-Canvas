@@ -22,8 +22,8 @@ export default class Banana {
         switch(this.type) {
 
             case 'yellow':
-                this.width = 40;
-                this.height = 60;
+                this.width = 60;
+                this.height = 90;
                 this.imageName = 'banana';
                 this.points = 50;
                 this.baseSpeed = 1.5;
@@ -32,8 +32,8 @@ export default class Banana {
                 
             case 'green':
 
-                this.width = 35;
-                this.height = 55;
+                this.width = 55;
+                this.height = 85;
                 this.imageName = 'greenBanana';
                 this.points = 100;
                 this.baseSpeed = 2.5;
@@ -42,26 +42,26 @@ export default class Banana {
                 
             case 'bunch':
 
-                this.width = 50;
-                this.height = 45;
+                this.width = 75;
+                this.height = 68;
                 this.imageName = 'twoBananas';
                 this.points = 200;
                 this.baseSpeed = 3.5;
 
                 break;
                 
-            case 'ape':
-                this.width = 35;
-                this.height = 35;
-                this.imageName = 'ape';
+            case 'pineapple':
+                this.width = 55;
+                this.height = 55;
+                this.imageName = 'ananas';
                 this.points = 500;
                 this.baseSpeed = 4.5;
                 break;
                 
             default:
 
-                this.width = 40;
-                this.height = 60;
+                this.width = 60;
+                this.height = 90;
                 this.imageName = 'banana';
                 this.points = 50;
                 this.baseSpeed = 1.5;
@@ -107,8 +107,17 @@ export default class Banana {
 
    
     containsPoint(x, y) {
-        const halfWidth = this.width / 2;
-        const halfHeight = this.height / 2;
+
+        if(this.type === 'pineapple'){
+            const radius= Math.max(this.width, this.height)/ 2 +5;
+
+            const dx= x -this.x;
+            const dy= y -this.y;
+
+            return (dx*dx+ dy* dy) <= (radius* radius)
+        }
+        const halfWidth = this.width / 2+ 10;
+        const halfHeight = this.height / 2 + 10;
         
         return (
 
@@ -121,15 +130,16 @@ export default class Banana {
 
     
     static async loadImages() {
-        console.log("Chargement des images...");
-        
+       
+ 
         return new Promise((resolve, reject) => {
             
             const imagesToLoad = {
+
                 banana: './assets/banana.png',
                 greenBanana: './assets/green-banana.png',
                 twoBananas: './assets/two-bananas.png',
-                ape: './assets/ape.png'
+                pineapple: './assets/ananas.png'
             };
 
             const images = {};
@@ -139,11 +149,13 @@ export default class Banana {
             for (let name in imagesToLoad) {
                 const img = new Image();
                 
-                img.onload = () => {
+                img.onload = () =>{
+
                     loadedCount++;
                     console.log(`Image ${name} chargée (${loadedCount}/${totalCount})`);
                     
                     if (loadedCount === totalCount) {
+                      
                         Banana.images = images;
                         Banana.imagesLoaded = true;
                         console.log("Toutes les images sont chargées");
@@ -151,7 +163,7 @@ export default class Banana {
                     }
                 };
                 
-                img.onerror = () => {
+                img.onerror = () =>{
                     console.error(`Erreur chargement : ${imagesToLoad[name]}`);
                     reject(new Error(`Impossible de charger ${name}`));
                 };
@@ -159,6 +171,8 @@ export default class Banana {
                 img.src = imagesToLoad[name];
                 images[name] = img;
             }
+        
         });
+   
     }
 }
