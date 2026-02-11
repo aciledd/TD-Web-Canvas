@@ -51,9 +51,9 @@ export default class Banana {
                 break;
                 
             case 'pineapple':
-                this.width = 55;
-                this.height = 55;
-                this.imageName = 'ananas';
+                this.width = 70;
+                this.height = 65;
+                this.imageName = 'pineapple';
                 this.points = 500;
                 this.baseSpeed = 4.5;
                 break;
