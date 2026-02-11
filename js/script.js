@@ -1,4 +1,4 @@
-import Banana from './Banana.js';
+import Banana from './banana.js';
 import { initListeners, inputStates } from './handler.js';
 
 
