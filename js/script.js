@@ -195,6 +195,12 @@ function gameLoop(time){
             drawHiScores();
             updateHiScores();
             break;
+
+        case "VICTORY":
+            drawVictory();
+            updateVictory();
+            break;
+                
     }
     
     requestAnimationFrame(gameLoop);
@@ -291,7 +297,7 @@ function updateLevelComplete() {
         
         else {
             saveHiScore(score);
-            gameState = "GAME_OVER";
+            gameState= "VICTORY";
         }
     }
 }
@@ -362,6 +368,7 @@ function checkBananaClick(mouseX, mouseY) {
             score += banana.points;
             bananasClicked++;
 
+            playPop();
             console.log("+" + banana.points + " pts ! Total: " + score);
             
             createParticleExplosion(banana.x, banana.y, banana.type);//explosion 
@@ -444,7 +451,8 @@ function drawMenu() {
     ctx.fillStyle = "#2D5016";
     ctx.font = "bold 36px Fredoka, Montserrat";
     ctx.textAlign = "center";
-    ctx.fillText("Aide le singe à se nourrir de fruits !", canvas.width / 2, 70);
+    ctx.fillText("Aide le singe à se nourrir de fruits", canvas.width / 2, 50);
+    ctx.fillText("en les ciblant !", canvas.width / 2, 90);
     
 
     if (panierImg && panierImg.complete) {
@@ -729,4 +737,42 @@ function saveHiScore(newScore) {
     hiScores.sort((a, b) => b.score - a.score);
     hiScores = hiScores.slice(0, 5);
     localStorage.setItem('chasseAmazonienneHiScores', JSON.stringify(hiScores));
+}
+
+function drawVictory() {
+
+    ctx.save();
+    
+    ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#FFDF64";
+    ctx.font = "bold 64px Fredoka, Montserrat";
+    ctx.textAlign = "center";
+    ctx.fillText("🎉 VICTOIRE TOTALE ! 🎉", canvas.width / 2, 200);
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "500 28px Fredoka, Montserrat";
+    ctx.fillText("Score Final : " + score, canvas.width / 2, 280);
+    ctx.fillText("Bananes : " + bananasClicked, canvas.width / 2, 330);
+
+    ctx.fillStyle = "#CDE77F";
+    ctx.font = "500 24px Fredoka, Montserrat";
+    ctx.fillText("Appuyez sur ESPACE pour revenir au menu", canvas.width / 2, 400);
+
+    ctx.restore();
+}
+
+
+function updateVictory() {
+    if (inputStates.space) {
+        inputStates.space = false;
+        startGame(); 
+    }
+}
+
+function playPop() {
+    const pop = new Audio('./assets/sounds/pop-sound.mp3');
+    pop.volume = 0.6;
+    pop.play();
 }
