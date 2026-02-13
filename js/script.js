@@ -156,7 +156,7 @@ function startGame() {
     particles = [];
     bananasClicked = 0;
     bananasMissed = 0;
-    lastSpawnTime = 0;
+    lastSpawnTime = currentTime;
     
     updatePanierHTML(0);
     
@@ -330,7 +330,7 @@ function initLevel(levelNumber) {
     bananasClicked = 0;
     bananasMissed = 0;
 
-    lastSpawnTime = 0;
+    lastSpawnTime =currentTime;
     updatePanierHTML(0);
 }
 
@@ -598,13 +598,9 @@ function drawLevelComplete() {
     } 
     
     else {
-        ctx.fillStyle = "#FFDF64";
-        ctx.font = "bold 40px Fredoka, Montserrat";
-        ctx.fillText("🎉 VICTOIRE TOTALE ! 🎉", canvas.width / 2, 410);
-        
-        ctx.fillStyle = "#FFFFFF";
-        ctx.font = "500 18px Fredoka, Montserrat";
-        ctx.fillText("Appuyez sur ESPACE", canvas.width / 2, 470);
+        ctx.fillStyle = "#CDE77F";
+        ctx.font = "500 24px Fredoka, Montserrat";
+        ctx.fillText("Appuyez sur ESPACE", canvas.width / 2, 430);
     }
     
     ctx.restore();
@@ -717,7 +713,7 @@ function drawHiScores() {
     
     ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
     ctx.font = "500 18px Fredoka, Montserrat";
-    ctx.fillText("Appuyez sur ESPACE pour retourner au menu", canvas.width / 2, 560);
+    ctx.fillText("Appuyez sur ESPACE pour rejouer", canvas.width / 2, 560);
     
     ctx.restore();
 }
@@ -749,7 +745,7 @@ function drawVictory() {
     ctx.fillStyle = "#FFDF64";
     ctx.font = "bold 64px Fredoka, Montserrat";
     ctx.textAlign = "center";
-    ctx.fillText("🎉 VICTOIRE TOTALE ! 🎉", canvas.width / 2, 200);
+    ctx.fillText("VICTOIRE TOTALE !", canvas.width / 2, 200);
 
     ctx.fillStyle = "#FFFFFF";
     ctx.font = "500 28px Fredoka, Montserrat";
