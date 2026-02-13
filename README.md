@@ -37,6 +37,8 @@ Chasse Amazonienne est un jeu de clic sur navigateur développé en JavaScript v
 ```
 chasse-amazonienne/
 ├── index.html
+├── .gitignore
+├── README.md
 ├── css/
 │   └── style.css
 ├── js/
