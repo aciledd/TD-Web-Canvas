@@ -9,9 +9,7 @@ let bananas = [];
 let particles = [];
 
 let level, score, lives, bananasClicked, bananasMissed;
-
-
-let panierImg, singeImg;
+let panierImg;
 
 /* gestion des différents niveaux du jeu demandés 1,2 et 3*/
 const LEVEL_CONFIG ={
@@ -30,6 +28,16 @@ window.onload = init; //initialisation lorsque la page charge
 async function init() {
     canvas = document.querySelector("#canvas");
     ctx = canvas.getContext("2d");
+
+    //son de fond d'ambiance jeu
+    const backgSound = new Audio('./assets/sounds/backg-sound.mp3');
+    backgSound.loop = true;
+    backgSound.volume = 0.1;
+
+    // le son de fond démarre au premier clic/touche du joueur 
+    document.addEventListener('click',() => {
+        backgSound.play();
+    }, { once:true }); //se déclenche une seule fois
     
     //charge les scores sauvegardes + active controles souris clavier
     loadHiScores();
@@ -39,13 +47,14 @@ async function init() {
       
         await loadMenuImages();
         await Banana.loadImages();
-        
-        imagesLoaded = true;
+    
         startGame();
+
     } 
     
     catch (error) {//lance quand même le jeu
         startGame();
+
     }
 }
 
@@ -53,10 +62,9 @@ function loadMenuImages() {
 
     return new Promise((resolve, reject) => {
         let loadedCount = 0;
-        const totalImages = 2;
+        const totalImages = 1;
         
         panierImg = new Image();
-        singeImg = new Image();
         
         const onImageLoad = () => {
             loadedCount++;
@@ -75,9 +83,6 @@ function loadMenuImages() {
         panierImg.onerror = onImageError;
         panierImg.src = './assets/panier0.png';
         
-        singeImg.onload = onImageLoad;
-        singeImg.onerror = onImageError;
-        singeImg.src = './assets/singe-adosse.png';
     });
 }
 
